@@ -9,14 +9,12 @@ const input = form.querySelector("input[name='search-text']");
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
-
   const query = input.value.trim();
-
-  if (!query) {
-    iziToast.warning({
-      title: "Warning",
-      message: "Please enter a search term!",
-    });
+     if (!query) {
+        iziToast.warning({
+        title: "Warning",
+        message: "Please enter a search term!",
+        });
     return;
   }
 

@@ -18,6 +18,7 @@ body {
   padding: 20px;
 }
 
+
 .form {
   display: flex;
   justify-content: center;
@@ -37,6 +38,7 @@ body {
   font-size: 16px;
 }
 
+
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -45,22 +47,36 @@ body {
   padding: 0;
 }
 
-.gallery img {
+.gallery li img {
   width: 100%;
   display: block;
   border-radius: 5px;
-}
-
-.gallery.loading::after {
-  content: "Loading...";
-  grid-column: 1 / -1;
-  text-align: center;
-  font-size: 18px;
-  color: #333;
 }
 
 .gallery li p {
   font-size: 12px;
   margin: 5px 0 0 0;
   color: #555;
+}
+
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+  display: none;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
