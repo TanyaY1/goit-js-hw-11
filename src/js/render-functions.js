@@ -1,36 +1,49 @@
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
-const galleryContainer = document.querySelector(".gallery");
+const gallery = document.querySelector(".gallery");
 const loader = document.querySelector(".loader");
-const lightbox = new SimpleLightbox(".gallery a");
+
+const lightbox = new SimpleLightbox(".gallery a", {
+  captionsData: "alt",
+  captionDelay: 250,
+});
 
 export function createGallery(images) {
   const markup = images
     .map(
-      (img) => `
-    <li>
-      <a href="${img.largeImageURL}">
-        <img src="${img.webformatURL}" alt="${img.tags}" loading="lazy"/>
-      </a>
-      <p>Likes: ${img.likes} | Views: ${img.views} | Comments: ${img.comments} | Downloads: ${img.downloads}</p>
-    </li>
-  `
+      image => `
+      <li class="gallery-item">
+        <a href="${image.largeImageURL}">
+          <img
+            src="${image.webformatURL}"
+            alt="${image.tags}"
+            loading="lazy"
+          />
+        </a>
+        <div class="info">
+          <p><b>Likes:</b> ${image.likes}</p>
+          <p><b>Views:</b> ${image.views}</p>
+          <p><b>Comments:</b> ${image.comments}</p>
+          <p><b>Downloads:</b> ${image.downloads}</p>
+        </div>
+      </li>
+    `
     )
     .join("");
 
-  galleryContainer.insertAdjacentHTML("beforeend", markup);
-  lightbox.refresh(); 
+  gallery.insertAdjacentHTML("beforeend", markup);
+  lightbox.refresh();
 }
 
 export function clearGallery() {
-  galleryContainer.innerHTML = "";
+  gallery.innerHTML = "";
 }
 
 export function showLoader() {
-  galleryContainer.classList.add("loading");
+  loader.classList.remove("is-hidden");
 }
 
 export function hideLoader() {
-  galleryContainer.classList.remove("loading");
+  loader.classList.add("is-hidden");
 }
